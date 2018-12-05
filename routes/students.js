@@ -1,6 +1,9 @@
-express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const queries = require("../queries/queries");
 
 router.get("/", (req, res) => {
-  res.status(200).send("yeah, yeah, yeah, you got it");
+  queries
+    .readAllStudents()
+    .then(students => res.status(200).send({ students }));
 });
